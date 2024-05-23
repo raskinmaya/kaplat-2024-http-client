@@ -1,28 +1,37 @@
 import {IRequest} from "../types";
+import api from "../../api";
 
 const getHandler = ({ id, year }: { id: number, year: number }) => {
-    return {
+    const req: IRequest = {
         method: 'GET',
         uri: '/test_get_method',
         params: {
             id,
             year,
         }
-    } as IRequest;
+    };
+
+    return api.get(req.uri, {
+        params: req.params
+    })
 }
 
-const deleteHandler = ({ id } : { id: number }) => {
-    return {
+const deleteHandler = ({ id } : { id: string }) => {
+    const req: IRequest = {
         method: 'DELETE',
         uri: '/test_delete_method',
         params: {
-            id
+            id,
         }
-    } as IRequest;
+    };
+
+    return api.delete(req.uri, {
+        params: req.params,
+    })
 }
 
 const putHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
-    return {
+    const req: IRequest = {
         method: 'PUT',
         uri: '/test_put_method',
         params: {
@@ -32,24 +41,30 @@ const putHandler = ({ id, year, requestId } : { id: number, year: number, reques
             id: (id - 123503) % 92,
             year: (year + 123) % 45,
         }
-    } as IRequest;
+    };
+
+    return api.put(req.uri, req.body, {
+        params: req.params,
+    })
 }
 
 const postHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
-    return {
+    const req: IRequest = {
         method: 'DELETE',
         uri: '/test_delete_method',
-        params: {
+        body: {
             id,
             year,
             requestId,
         }
-    } as IRequest;
+    };
+
+    return api.post(req.uri, req.body)
 }
 
-export default [
+export default {
     getHandler,
     postHandler,
     putHandler,
     deleteHandler
-]
+}
