@@ -1,7 +1,7 @@
-import {IRequest} from "../types";
+import {IRequest, IResponse} from "../types";
 import api from "../../api";
 
-const getHandler = ({ id, year }: { id: number, year: number }) => {
+const getHandler = async ({id, year}: { id: number, year: number }): Promise<IResponse> => {
     const req: IRequest = {
         method: 'GET',
         uri: '/test_get_method',
@@ -11,12 +11,14 @@ const getHandler = ({ id, year }: { id: number, year: number }) => {
         }
     };
 
-    return api.get(req.uri, {
+    const res = await api.get(req.uri, {
         params: req.params
-    })
+    });
+
+    return res.data as IResponse;
 }
 
-const deleteHandler = ({ id } : { id: string }) => {
+const deleteHandler = async ({id}: { id: string }): Promise<IResponse> => {
     const req: IRequest = {
         method: 'DELETE',
         uri: '/test_delete_method',
@@ -25,12 +27,14 @@ const deleteHandler = ({ id } : { id: string }) => {
         }
     };
 
-    return api.delete(req.uri, {
+    const res = await api.delete(req.uri, {
         params: req.params,
-    })
+    });
+
+    return res.data as IResponse;
 }
 
-const putHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
+const putHandler = async ({id, year, requestId}: { id: number, year: number, requestId: string }): Promise<IResponse> => {
     const req: IRequest = {
         method: 'PUT',
         uri: '/test_put_method',
@@ -43,12 +47,14 @@ const putHandler = ({ id, year, requestId } : { id: number, year: number, reques
         }
     };
 
-    return api.put(req.uri, req.body, {
+    const res = await api.put(req.uri, req.body, {
         params: req.params,
-    })
+    });
+
+    return res.data as IResponse;
 }
 
-const postHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
+const postHandler = async ({ id, year, requestId } : { id: number, year: number, requestId: string }): Promise<IResponse> => {
     const req: IRequest = {
         method: 'DELETE',
         uri: '/test_delete_method',
@@ -59,7 +65,8 @@ const postHandler = ({ id, year, requestId } : { id: number, year: number, reque
         }
     };
 
-    return api.post(req.uri, req.body)
+    const res = await api.post(req.uri, req.body);
+    return res.data as IResponse;
 }
 
 export default {
