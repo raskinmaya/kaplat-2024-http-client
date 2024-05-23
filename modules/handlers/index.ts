@@ -18,7 +18,7 @@ const getHandler = async ({id, year}: { id: number, year: number }): Promise<str
     return res.data as string;
 }
 
-const deleteHandler = async ({id}: { id: string }): Promise<IResponse> => {
+const deleteHandler = async ({id}: { id: string }): Promise<void> => {
     const req: IRequest = {
         method: 'DELETE',
         uri: '/test_delete_method',
@@ -27,11 +27,9 @@ const deleteHandler = async ({id}: { id: string }): Promise<IResponse> => {
         }
     };
 
-    const res = await api.delete(req.uri, {
+    await api.delete(req.uri, {
         params: req.params,
     });
-
-    return res.data as IResponse;
 }
 
 const putHandler = async ({id, year, requestId}: { id: number, year: number, requestId: string }): Promise<IResponse> => {
