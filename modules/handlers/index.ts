@@ -54,8 +54,8 @@ const putHandler = async ({id, year, requestId}: { id: number, year: number, req
 
 const postHandler = async ({ id, year, requestId } : { id: number, year: number, requestId: string }): Promise<IResponse> => {
     const req: IRequest = {
-        method: 'DELETE',
-        uri: '/test_delete_method',
+        method: 'POST',
+        uri: '/test_post_method',
         body: {
             id,
             year,
