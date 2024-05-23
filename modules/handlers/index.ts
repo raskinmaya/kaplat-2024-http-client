@@ -1,4 +1,4 @@
-import {IRequestHandler} from "../types";
+import {IRequest} from "../types";
 
 const getHandler = ({ id, year }: { id: number, year: number }) => {
     return {
@@ -8,7 +8,7 @@ const getHandler = ({ id, year }: { id: number, year: number }) => {
             id,
             year,
         }
-    } as IRequestHandler;
+    } as IRequest;
 }
 
 const deleteHandler = ({ id } : { id: number }) => {
@@ -18,7 +18,7 @@ const deleteHandler = ({ id } : { id: number }) => {
         params: {
             id
         }
-    } as IRequestHandler;
+    } as IRequest;
 }
 
 const putHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
@@ -29,10 +29,10 @@ const putHandler = ({ id, year, requestId } : { id: number, year: number, reques
             id: requestId
         },
         body: {
-            id,
-            year,
+            id: (id - 123503) % 92,
+            year: (year + 123) % 45,
         }
-    } as IRequestHandler;
+    } as IRequest;
 }
 
 const postHandler = ({ id, year, requestId } : { id: number, year: number, requestId: string }) => {
@@ -44,7 +44,7 @@ const postHandler = ({ id, year, requestId } : { id: number, year: number, reque
             year,
             requestId,
         }
-    } as IRequestHandler;
+    } as IRequest;
 }
 
 export default [

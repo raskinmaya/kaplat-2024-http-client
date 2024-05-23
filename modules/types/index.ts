@@ -26,7 +26,11 @@ type BodyType = PostBody | PutBody;
 type QueryParamsType = GetParams | DeleteParams | PutParams
 type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-export interface IRequestHandler {
+export interface IResponse {
+    message: string,
+}
+
+export interface IRequest {
     method: MethodType;
     uri: string;
     params?: QueryParamsType;
