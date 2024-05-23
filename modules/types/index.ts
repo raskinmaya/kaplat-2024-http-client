@@ -27,7 +27,7 @@ type QueryParamsType = GetParams | DeleteParams | PutParams
 type MethodType = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export interface IResponse {
-    message: string,
+    message?: string,
 }
 
 export interface IRequest {
