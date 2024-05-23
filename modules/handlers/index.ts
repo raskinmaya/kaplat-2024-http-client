@@ -1,7 +1,7 @@
 import {IRequest, IResponse} from "../types";
 import api from "../../api";
 
-const getHandler = async ({id, year}: { id: number, year: number }): Promise<IResponse> => {
+const getHandler = async ({id, year}: { id: number, year: number }): Promise<string> => {
     const req: IRequest = {
         method: 'GET',
         uri: '/test_get_method',
@@ -15,7 +15,7 @@ const getHandler = async ({id, year}: { id: number, year: number }): Promise<IRe
         params: req.params
     });
 
-    return res.data as IResponse;
+    return res.data as string;
 }
 
 const deleteHandler = async ({id}: { id: string }): Promise<IResponse> => {
